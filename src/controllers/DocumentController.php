@@ -84,7 +84,7 @@ class DocumentController extends MyPagesController
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $fileUpload = UploadedFile::getInstance($model, 'fileUpload');
+            $fileUpload = UploadedFile::getInstance($model, 'file');
             if ($fileUpload != null) {
                 $filename = Helper::createAlias($fileUpload->baseName);
                 $pathFile = '/uploads/document/file/' . $filename . '.' . $fileUpload->extension;
@@ -96,8 +96,8 @@ class DocumentController extends MyPagesController
             if ($model->validate()) {
                 if ($model->save()) {
                     $imageName = null;
-                    if ($model->imageUpload != "") {
-                        $pathImage = FRONTEND_HOST_INFO . $model->imageUpload;
+                    if ($model->image != "") {
+                        $pathImage = FRONTEND_HOST_INFO . $model->image;
                         $path = Yii::getAlias('@frontend/web/uploads/document/');
                         foreach (Yii::$app->params['document'] as $key => $value) {
                             $pathSave = $path . $key;
