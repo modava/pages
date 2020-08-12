@@ -5,11 +5,11 @@ use yii\widgets\ActiveForm;
 use modava\pages\PagesModule;
 
 /* @var $this yii\web\View */
-/* @var $model modava\pages\models\search\DocumentSearch */
+/* @var $model modava\pages\models\search\PartnerSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="document-search">
+<div class="pages-partner-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,15 +23,11 @@ use modava\pages\PagesModule;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'slug') ?>
-
-    <?= $form->field($model, 'description') ?>
-
     <?= $form->field($model, 'image') ?>
 
-    <?php // echo $form->field($model, 'file') ?>
+    <?= $form->field($model, 'link') ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status') ?>
 
     <?php // echo $form->field($model, 'language') ?>
 

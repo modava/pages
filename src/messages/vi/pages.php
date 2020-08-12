@@ -24,5 +24,6 @@ return [
     'Image' => 'Hình ảnh',
     'Document' => 'Tài liệu',
     'Documents' => 'Tài liệu',
-
+    'Partners' => 'Đối tác',
+    'Partner' => 'Đối tác',
 ];
