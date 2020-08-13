@@ -25,4 +25,9 @@ class PagesPartnerQuery extends \yii\db\ActiveQuery
     {
         return $this->orderBy([PagesPartner::tableName() . '.id' => SORT_DESC]);
     }
+
+    public function findByLanguage()
+    {
+        return $this->andWhere([PagesPartner::tableName() . '.language' => \Yii::$app->language]);
+    }
 }
