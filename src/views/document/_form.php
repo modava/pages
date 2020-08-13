@@ -19,7 +19,7 @@ use modava\pages\PagesModule;
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-4">
-            <?= $form->field($model, 'language')->dropDownList(Yii::$app->getModule('pages')->params['availableLocales'], ['prompt' => 'Chọn ngôn ngữ...']) ?>
+            <?= $form->field($model, 'language')->dropDownList(Yii::$app->params['availableLocales'], ['prompt' => 'Chọn ngôn ngữ...']) ?>
         </div>
 
     </div>

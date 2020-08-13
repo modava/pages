@@ -19,7 +19,7 @@ use modava\pages\PagesModule;
         </div>
         <div class="col-4">
             <?= $form->field($model, 'language')
-                ->dropDownList(Yii::$app->getModule('product')->params['availableLocales'])
+                ->dropDownList(Yii::$app->params['availableLocales'])
                 ->label(PagesModule::t('pages', 'Ngôn ngữ')) ?>
 
         </div>

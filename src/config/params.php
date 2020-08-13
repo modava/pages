@@ -2,11 +2,6 @@
 use modava\pages\PagesModule;
 
 return [
-    'availableLocales' => [
-        'vi' => 'Tiếng Việt',
-        'en' => 'English',
-        'jp' => 'Japan',
-    ],
     'pagesName' => 'Pages',
     'pagesVersion' => '1.0',
     'status' => [
