@@ -34,8 +34,6 @@ class PagesModule extends Module implements BootstrapInterface
         $this->layout = 'pages';
     }
 
-
-
     public function bootstrap($app)
     {
         $app->on(Application::EVENT_BEFORE_ACTION, function () {

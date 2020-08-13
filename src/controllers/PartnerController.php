@@ -235,6 +235,6 @@ class PartnerController extends MyPagesController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('website', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(PagesModule::t('pages', 'The requested page does not exist.'));
     }
 }

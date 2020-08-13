@@ -3,7 +3,8 @@
   "description": "Pages Modava",
   "keywords": [
     "yii2",
-    "pages"
+    "pages",
+    "helper"
   ],
   "type": "Yii2-extension",
   "license": "BSD-3-Clause",
