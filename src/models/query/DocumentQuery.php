@@ -25,4 +25,9 @@ class DocumentQuery extends \yii\db\ActiveQuery
     {
         return $this->orderBy([Document::tableName() . '.id' => SORT_DESC]);
     }
+
+    public function findByLanguage()
+    {
+        return $this->andWhere([Document::tableName() . '.language' => \Yii::$app->language]);
+    }
 }
