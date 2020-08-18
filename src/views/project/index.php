@@ -147,8 +147,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                         [
                                             'class' => 'yii\grid\ActionColumn',
                                             'header' => PagesModule::t('pages', 'Actions'),
-                                            'template' => '{update} {delete}',
+                                            'template' => '{images} {update} {delete}',
                                             'buttons' => [
+                                                'images' => function ($url, $model) {
+                                                    return Html::a('<span class="ion ion-md-images"></span>', $url, [
+                                                        'title' => PagesModule::t('pages', 'Images'),
+                                                        'alia-label' => PagesModule::t('pages', 'Images'),
+                                                        'data-pjax' => 0,
+                                                        'class' => 'btn btn-green btn-xs'
+                                                    ]);
+                                                },
                                                 'update' => function ($url, $model) {
                                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                                         'title' => PagesModule::t('pages', 'Update'),

@@ -3,6 +3,7 @@
 namespace modava\pages\controllers;
 
 use modava\pages\components\MyUpload;
+use modava\pages\models\ProjectImage;
 use yii\db\Exception;
 use Yii;
 use yii\helpers\Html;
@@ -19,8 +20,8 @@ use modava\pages\models\search\ProjectSearch;
 class ProjectController extends MyPagesController
 {
     /**
-    * {@inheritdoc}
-    */
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
@@ -34,9 +35,9 @@ class ProjectController extends MyPagesController
     }
 
     /**
-    * Lists all Project models.
-    * @return mixed
-    */
+     * Lists all Project models.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $searchModel = new ProjectSearch();
@@ -46,16 +47,15 @@ class ProjectController extends MyPagesController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-            }
-
+    }
 
 
     /**
-    * Displays a single Project model.
-    * @param integer $id
-    * @return mixed
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+     * Displays a single Project model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -64,10 +64,10 @@ class ProjectController extends MyPagesController
     }
 
     /**
-    * Creates a new Project model.
-    * If creation is successful, the browser will be redirected to the 'view' page.
-    * @return mixed
-    */
+     * Creates a new Project model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
     public function actionCreate()
     {
         $model = new Project();
@@ -91,7 +91,7 @@ class ProjectController extends MyPagesController
                     $model->updateAttributes([
                         'image' => $imageName
                     ]);
-                    Yii::$app->session->setFlash('toastr-product-view', [
+                    Yii::$app->session->setFlash('toastr-project-view', [
                         'text' => 'Tạo mới thành công',
                         'type' => 'success'
                     ]);
@@ -116,18 +116,18 @@ class ProjectController extends MyPagesController
     }
 
     /**
-    * Updates an existing Project model.
-    * If update is successful, the browser will be redirected to the 'view' page.
-    * @param integer $id
-    * @return mixed
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+     * Updates an existing Project model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if($model->validate()) {
+            if ($model->validate()) {
                 $oldImage = $model->getOldAttribute('image');
                 if ($model->save()) {
                     if ($model->getAttribute('image') !== $oldImage) {
@@ -159,7 +159,7 @@ class ProjectController extends MyPagesController
                             }
                         }
                     }
-                    Yii::$app->session->setFlash('toastr-product-view', [
+                    Yii::$app->session->setFlash('toastr-project-view', [
                         'text' => 'Cập nhật thành công',
                         'type' => 'success'
                     ]);
@@ -183,13 +183,34 @@ class ProjectController extends MyPagesController
         ]);
     }
 
+    public function actionImages($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validateImages() && $model->saveImages()) {
+                return $this->refresh();
+            }
+        }
+        $model->iptImages = null;
+        return $this->render('images', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionDelImage($id)
+    {
+        $model = $this->findModelImage($id);
+        if ($model->delete()) return 1;
+        return 0;
+    }
+
     /**
-    * Deletes an existing Project model.
-    * If deletion is successful, the browser will be redirected to the 'index' page.
-    * @param integer $id
-    * @return mixed
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+     * Deletes an existing Project model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -222,12 +243,12 @@ class ProjectController extends MyPagesController
     }
 
     /**
-    * Finds the Project model based on its primary key value.
-    * If the model is not found, a 404 HTTP exception will be thrown.
-    * @param integer $id
-    * @return Project the loaded model
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+     * Finds the Project model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Project the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
 
 
     protected function findModel($id)
@@ -236,7 +257,15 @@ class ProjectController extends MyPagesController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('pages', 'The requested page does not exist.'));
-        throw new NotFoundHttpException(PagesModule::t('pages','The requested page does not exist.'));
+        throw new NotFoundHttpException(PagesModule::t('pages', 'The requested page does not exist.'));
+    }
+
+    protected function findModelImage($id)
+    {
+        if (($model = ProjectImage::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(PagesModule::t('pages', 'The requested page does not exist.'));
     }
 }

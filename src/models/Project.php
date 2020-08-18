@@ -3,6 +3,7 @@
 namespace modava\pages\models;
 
 use common\models\User;
+use modava\pages\components\MyUpload;
 use modava\pages\PagesModule;
 use modava\pages\models\table\ProjectTable;
 use yii\behaviors\BlameableBehavior;
@@ -38,6 +39,8 @@ use Yii;
 class Project extends ProjectTable
 {
     public $toastr_key = 'project';
+
+    public $iptImages;
 
     public function behaviors()
     {
@@ -77,11 +80,13 @@ class Project extends ProjectTable
         return [
             [['title', 'slug'], 'required'],
             [['description', 'content', 'ads_pixel', 'ads_session'], 'string'],
-            [['tech'], 'safe'],
+            [['tech', 'iptImages'], 'safe'],
             [['position', 'status', 'views', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['title', 'slug', 'image'], 'string', 'max' => 255],
             [['language'], 'string', 'max' => 25],
             [['slug'], 'unique'],
+            ['image', 'file', 'extensions' => ['png', 'jpg', 'gif', 'jpeg'],
+                'maxSize' => 1024 * 1024],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
@@ -111,6 +116,65 @@ class Project extends ProjectTable
             'created_by' => PagesModule::t('pages', 'Created By'),
             'updated_by' => PagesModule::t('pages', 'Updated By'),
         ];
+    }
+
+    public function validateImages()
+    {
+        $iptImages = json_decode($this->iptImages);
+        if ($iptImages != null) {
+            $this->iptImages = $iptImages;
+        }
+        if ($this->iptImages == null) {
+            $this->addError('iptImages', 'Images null');
+            return false;
+        } else {
+            if (is_string($this->iptImages)) $this->iptImages = [$this->iptImages];
+            if (!is_array($this->iptImages)) {
+                $this->addError('iptImages', 'Data type failed');
+                return false;
+            } else {
+                foreach ($this->iptImages as $image) {
+                    $modelImages = new ProjectImage([
+                        'project_id' => $this->primaryKey,
+                        'image_url' => $image
+                    ]);
+                    if (!$modelImages->validate()) {
+                        var_dump($modelImages->getErrors());
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public function saveImages()
+    {
+        if (is_array($this->iptImages)) {
+            foreach ($this->iptImages as $image) {
+                $path = Yii::getAlias('@frontend/web/uploads/project/');
+                $imageName = null;
+                foreach (Yii::$app->params['project'] as $key => $value) {
+                    $pathSave = $path . $key;
+                    if (!file_exists($pathSave) && !is_dir($pathSave)) {
+                        mkdir($pathSave);
+                    }
+                    $resultName = MyUpload::uploadFromOnline($value['width'], $value['height'], $image, $pathSave . '/', $imageName);
+                    if ($imageName == null) {
+                        $imageName = $resultName;
+                    }
+                }
+                $modelImage = new ProjectImage([
+                    'project_id' => $this->primaryKey,
+                    'image_url' => $imageName
+                ]);
+                if (!$modelImage->save()) {
+                    var_dump($modelImage->getErrors());
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public function afterSave($insert, $changedAttributes)
