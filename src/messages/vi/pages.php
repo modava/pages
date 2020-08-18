@@ -26,4 +26,7 @@ return [
     'Documents' => 'Tài liệu',
     'Partners' => 'Đối tác',
     'Partner' => 'Đối tác',
+    'Project' => 'Dự án',
+    'Projects' => 'Dự án',
+    'Tech' => 'Kỹ thuật',
 ];
