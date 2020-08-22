@@ -28,6 +28,7 @@ class DocumentQuery extends \yii\db\ActiveQuery
 
     public function findByLanguage()
     {
-        return $this->andWhere([Document::tableName() . '.language' => \Yii::$app->language]);
+        return $this->andWhere([Document::tableName() . '.language' => \Yii::$app->language])
+            ->orWhere([Document::tableName() . '.language' => '']);
     }
 }

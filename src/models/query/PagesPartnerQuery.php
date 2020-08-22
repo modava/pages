@@ -28,6 +28,7 @@ class PagesPartnerQuery extends \yii\db\ActiveQuery
 
     public function findByLanguage()
     {
-        return $this->andWhere([PagesPartner::tableName() . '.language' => \Yii::$app->language]);
+        return $this->andWhere([PagesPartner::tableName() . '.language' => \Yii::$app->language])
+            ->orWhere([PagesPartner::tableName() . '.language' => '']);
     }
 }

@@ -23,6 +23,13 @@ class ProjectQuery extends \yii\db\ActiveQuery
 
     public function sortDescById()
     {
-        return $this->orderBy([Project::tableName() . '.id' => SORT_DESC]);
+        return $this->orderBy([Project::tableName() . '.id' => SORT_DESC])
+            ->orWhere([Project::tableName() . '.language' => '']);
+    }
+
+    public function findByLanguage()
+    {
+        return $this->andWhere([Project::tableName() . '.language' => \Yii::$app->language])
+            ->orWhere([Project::tableName() . '.language' => '']);
     }
 }
