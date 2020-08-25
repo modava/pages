@@ -159,10 +159,7 @@ class Project extends ProjectTable
                     if (!file_exists($pathSave) && !is_dir($pathSave)) {
                         mkdir($pathSave);
                     }
-                    $resultName = MyUpload::uploadFromOnline($value['width'], $value['height'], $image, $pathSave . '/', $imageName);
-                    if ($imageName == null) {
-                        $imageName = $resultName;
-                    }
+                    $imageName = MyUpload::uploadFromOnline($value['width'], $value['height'], $image, $pathSave . '/', $imageName);
                 }
                 $modelImage = new ProjectImage([
                     'project_id' => $this->primaryKey,
