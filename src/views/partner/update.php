@@ -8,12 +8,12 @@ use modava\pages\PagesModule;
 /* @var $this yii\web\View */
 /* @var $model modava\pages\models\PagesPartner */
 
-$this->title = PagesModule::t('pages', 'Update : {name}', [
+$this->title = Yii::t('backend', 'Update : {name}', [
     'name' => $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => PagesModule::t('pages', 'Partners'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Partners'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = PagesModule::t('pages', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('backend', 'Update');
 ?>
 <div class="container-fluid px-xxl-25 px-xl-10">
     <?= NavbarWidgets::widget(); ?>
@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = PagesModule::t('pages', 'Update');
                         class="ion ion-md-apps"></span></span><?= Html::encode($this->title) ?>
         </h4>
         <a class="btn btn-outline-light" href="<?= Url::to(['create']); ?>"
-           title="<?= PagesModule::t('pages', 'Create'); ?>">
-            <i class="fa fa-plus"></i> <?= PagesModule::t('pages', 'Create'); ?></a>
+           title="<?= Yii::t('backend', 'Create'); ?>">
+            <i class="fa fa-plus"></i> <?= Yii::t('backend', 'Create'); ?></a>
     </div>
     <!-- /Title -->
 

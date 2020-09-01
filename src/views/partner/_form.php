@@ -20,7 +20,7 @@ use modava\pages\PagesModule;
         <div class="col-4">
             <?= $form->field($model, 'language')
                 ->dropDownList(Yii::$app->params['availableLocales'])
-                ->label(PagesModule::t('pages', 'Ngôn ngữ')) ?>
+                ->label(Yii::t('backend', 'Ngôn ngữ')) ?>
 
         </div>
     </div>
@@ -36,13 +36,13 @@ use modava\pages\PagesModule;
         'model' => $model,
         'attribute' => 'image',
         'path' => $path,
-        'label' => PagesModule::t('pages', 'Hình ảnh') . ': ' . Yii::$app->params['partner-size'],
+        'label' => Yii::t('backend', 'Hình ảnh') . ': ' . Yii::$app->params['partner-size'],
     ]); ?>
 
     <?php if (Yii::$app->controller->action->id == 'create') $model->status = 1; ?>
     <?= $form->field($model, 'status')->checkbox() ?>
     <div class="form-group">
-        <?= Html::submitButton(PagesModule::t('pages', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

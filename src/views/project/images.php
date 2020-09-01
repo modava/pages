@@ -10,9 +10,9 @@ use modava\pages\models\ProjectImage;
 /* @var $model modava\pages\models\Project */
 
 $this->title = 'Project Images: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => PagesModule::t('pages', 'Project'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Project'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = PagesModule::t('pages', 'Images');
+$this->params['breadcrumbs'][] = Yii::t('backend', 'Images');
 
 $css = <<< CSS
 .hk-sec-wrapper .hk-gallery a {
@@ -55,8 +55,8 @@ $this->registerCss($css);
                             class="ion ion-md-apps"></span></span><?= Html::encode($this->title) ?>
             </h4>
             <a class="btn btn-outline-light" href="<?= \yii\helpers\Url::to(['create']); ?>"
-               title="<?= PagesModule::t('pages', 'Create'); ?>">
-                <i class="fa fa-plus"></i> <?= PagesModule::t('pages', 'Create'); ?></a>
+               title="<?= Yii::t('backend', 'Create'); ?>">
+                <i class="fa fa-plus"></i> <?= Yii::t('backend', 'Create'); ?></a>
         </div>
         <!-- /Title -->
 
@@ -96,7 +96,7 @@ $this->registerCss($css);
                                 'model' => $model,
                                 'attribute' => 'iptImages',
                                 'path' => $path,
-                                'label' => PagesModule::t('pages', 'Hình ảnh') . ': ' . Yii::$app->params['project-image-size'],
+                                'label' => Yii::t('backend', 'Hình ảnh') . ': ' . Yii::$app->params['project-image-size'],
                             ]); ?>
                         </div>
                     </div>

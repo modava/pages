@@ -21,7 +21,7 @@ return [
     'Name' => 'Tên',
     'Description' => 'Mô tả',
     'Title' => 'Tiêu đề',
-    'Image' => 'Hình ảnh',
+    'Image' => 'Hình',
     'Document' => 'Tài liệu',
     'Documents' => 'Tài liệu',
     'Partners' => 'Đối tác',

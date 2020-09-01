@@ -2,17 +2,18 @@
 
 namespace modava\pages\controllers;
 
-use modava\pages\components\MyUpload;
-use modava\pages\models\ProjectImage;
-use yii\db\Exception;
-use Yii;
-use yii\helpers\Html;
-use yii\filters\VerbFilter;
-use yii\web\NotFoundHttpException;
-use modava\pages\PagesModule;
+use backend\components\MyComponent;
 use modava\pages\components\MyPagesController;
+use modava\pages\components\MyUpload;
 use modava\pages\models\Project;
+use modava\pages\models\ProjectImage;
 use modava\pages\models\search\ProjectSearch;
+use modava\pages\PagesModule;
+use Yii;
+use yii\db\Exception;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -43,9 +44,12 @@ class ProjectController extends MyPagesController
         $searchModel = new ProjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $totalPage = $this->getTotalPage($dataProvider);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'totalPage'    => $totalPage,
         ]);
     }
 
@@ -243,6 +247,33 @@ class ProjectController extends MyPagesController
     }
 
     /**
+     * @param $perpage
+     */
+    public function actionPerpage($perpage)
+    {
+        MyComponent::setCookies('pageSize', $perpage);
+    }
+
+    /**
+     * @param $dataProvider
+     * @return float|int
+     */
+    public function getTotalPage($dataProvider)
+    {
+        if (MyComponent::hasCookies('pageSize')) {
+            $dataProvider->pagination->pageSize = MyComponent::getCookies('pageSize');
+        } else {
+            $dataProvider->pagination->pageSize = 10;
+        }
+
+        $pageSize   = $dataProvider->pagination->pageSize;
+        $totalCount = $dataProvider->totalCount;
+        $totalPage  = (($totalCount + $pageSize - 1) / $pageSize);
+
+        return $totalPage;
+    }
+
+    /**
      * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -257,7 +288,7 @@ class ProjectController extends MyPagesController
             return $model;
         }
 
-        throw new NotFoundHttpException(PagesModule::t('pages', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
     }
 
     protected function findModelImage($id)
@@ -266,6 +297,6 @@ class ProjectController extends MyPagesController
             return $model;
         }
 
-        throw new NotFoundHttpException(PagesModule::t('pages', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
     }
 }

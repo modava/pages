@@ -8,8 +8,8 @@ use modava\pages\PagesModule;
 /* @var $this yii\web\View */
 /* @var $model modava\pages\models\Project */
 
-$this->title = PagesModule::t('pages', 'Create');
-$this->params['breadcrumbs'][] = ['label' => PagesModule::t('pages', 'Projects'), 'url' => ['index']];
+$this->title = Yii::t('backend', 'Create');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Projects'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container-fluid px-xxl-25 px-xl-10">

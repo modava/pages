@@ -40,14 +40,14 @@ use modava\pages\PagesModule;
                 'model' => $model,
                 'attribute' => 'image',
                 'path' => $path,
-                'label' => PagesModule::t('pages', 'Hình ảnh') . ': ',
+                'label' => Yii::t('backend', 'Hình ảnh') . ': ',
             ]); ?>
         </div>
         <div class="col-6">
             <?php
                 echo $form->field($model, 'file')->fileInput();
                 if($model->file != null)
-                    echo Html::a(PagesModule::t('pages', 'File đã upload'), \yii\helpers\Url::toRoute(['download-file', 'file' => $model->file]), ['target' => '_blank', 'data-pjax' => 0]);
+                    echo Html::a(Yii::t('backend', 'File đã upload'), \yii\helpers\Url::toRoute(['download-file', 'file' => $model->file]), ['target' => '_blank', 'data-pjax' => 0]);
             ?>
         </div>
     </div>
@@ -55,7 +55,7 @@ use modava\pages\PagesModule;
     <?php if (Yii::$app->controller->action->id == 'create') $model->status = 1; ?>
     <?= $form->field($model, 'status')->checkbox() ?>
     <div class="form-group">
-        <?= Html::submitButton(PagesModule::t('pages', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

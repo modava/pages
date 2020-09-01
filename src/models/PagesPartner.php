@@ -72,16 +72,16 @@ class PagesPartner extends PagesPartnerTable
     public function attributeLabels()
     {
         return [
-            'id' => PagesModule::t('pages', 'ID'),
-            'title' => PagesModule::t('pages', 'Title'),
-            'image' => PagesModule::t('pages', 'Image'),
-            'link' => PagesModule::t('pages', 'Link'),
-            'status' => PagesModule::t('pages', 'Status'),
-            'language' => PagesModule::t('pages', 'Language'),
-            'created_at' => PagesModule::t('pages', 'Created At'),
-            'updated_at' => PagesModule::t('pages', 'Updated At'),
-            'created_by' => PagesModule::t('pages', 'Created By'),
-            'updated_by' => PagesModule::t('pages', 'Updated By'),
+            'id' => Yii::t('backend', 'ID'),
+            'title' => Yii::t('backend', 'Title'),
+            'image' => Yii::t('backend', 'Image'),
+            'link' => Yii::t('backend', 'Link'),
+            'status' => Yii::t('backend', 'Status'),
+            'language' => Yii::t('backend', 'Language'),
+            'created_at' => Yii::t('backend', 'Created At'),
+            'updated_at' => Yii::t('backend', 'Updated At'),
+            'created_by' => Yii::t('backend', 'Created By'),
+            'updated_by' => Yii::t('backend', 'Updated By'),
         ];
     }
 

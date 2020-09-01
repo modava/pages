@@ -5,7 +5,7 @@ return [
     'pagesName' => 'Pages',
     'pagesVersion' => '1.0',
     'status' => [
-        '0' => PagesModule::t('pages', 'Tạm ngưng'),
-        '1' => PagesModule::t('pages', 'Hiển thị'),
+        '0' => Yii::t('backend', 'Tạm ngưng'),
+        '1' => Yii::t('backend', 'Hiển thị'),
     ]
 ];

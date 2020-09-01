@@ -71,14 +71,14 @@ class ProjectImage extends ProjectImageTable
     public function attributeLabels()
     {
         return [
-            'id' => PagesModule::t('pages', 'ID'),
-            'project_id' => PagesModule::t('pages', 'Project ID'),
-            'image_url' => PagesModule::t('pages', 'Image Url'),
-            'status' => PagesModule::t('pages', 'Status'),
-            'created_at' => PagesModule::t('pages', 'Created At'),
-            'updated_at' => PagesModule::t('pages', 'Updated At'),
-            'created_by' => PagesModule::t('pages', 'Created By'),
-            'updated_by' => PagesModule::t('pages', 'Updated By'),
+            'id' => Yii::t('backend', 'ID'),
+            'project_id' => Yii::t('backend', 'Project ID'),
+            'image_url' => Yii::t('backend', 'Image Url'),
+            'status' => Yii::t('backend', 'Status'),
+            'created_at' => Yii::t('backend', 'Created At'),
+            'updated_at' => Yii::t('backend', 'Updated At'),
+            'created_by' => Yii::t('backend', 'Created By'),
+            'updated_by' => Yii::t('backend', 'Updated By'),
         ];
     }
 
