@@ -2,13 +2,11 @@
 
 namespace modava\pages\models\table;
 
-use cheatsheet\Time;
-use modava\pages\components\MyUpload;
+use backend\components\MyModel;
 use modava\pages\models\query\ProjectImageQuery;
 use Yii;
-use yii\db\ActiveRecord;
 
-class ProjectImageTable extends \yii\db\ActiveRecord
+class ProjectImageTable extends MyModel
 {
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;

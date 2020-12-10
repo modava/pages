@@ -2,12 +2,11 @@
 
 namespace modava\pages\models\table;
 
-use cheatsheet\Time;
+use backend\components\MyModel;
 use modava\pages\models\query\PagesPartnerQuery;
 use Yii;
-use yii\db\ActiveRecord;
 
-class PagesPartnerTable extends \yii\db\ActiveRecord
+class PagesPartnerTable extends MyModel
 {
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
