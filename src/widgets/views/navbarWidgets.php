@@ -23,4 +23,10 @@ use yii\helpers\Url;
             <i class="ion ion-ios-locate"></i><?= Yii::t('backend', 'Project'); ?>
         </a>
     </li>
+    <li class="nav-item mb-5">
+        <a class="nav-link link-icon-left<?php if (Yii::$app->controller->id == 'project') echo ' active' ?>"
+           href="<?= Url::toRoute(['/pages/faq/update']); ?>">
+            <i class="ion ion-ios-locate"></i><?= Yii::t('backend', 'Faq'); ?>
+        </a>
+    </li>
 </ul>

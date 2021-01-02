@@ -20,7 +20,7 @@ use modava\pages\PagesModule;
         </div>
         <div class="col-4">
             <?= $form->field($model, 'language')
-                ->dropDownList(Yii::$app->params['availableLocales'])
+                ->dropDownList(Yii::$app->params['availableLocales'], ['prompt' => Yii::t('backend', 'Chọn ngôn ngữ...')])
                 ->label(Yii::t('backend', 'Ngôn ngữ')) ?>
 
         </div>
