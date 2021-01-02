@@ -34,6 +34,18 @@ class m210102_102802_create_table_faq extends Migration
         $this->addForeignKey('fk-faq-created_by-user_id', 'pages_faq', 'created_by', 'user', 'id', 'RESTRICT', 'CASCADE');
         $this->addForeignKey('fk-faq-updated_by-user_id', 'pages_faq', 'updated_by', 'user', 'id', 'RESTRICT', 'CASCADE');
 
+        $this->insert('pages_faq', [
+            'id' => 1,
+            'title' => 'Faq',
+            'slug' => 'faq',
+            'content' => '',
+            'language' => '',
+            'status' => '1',
+            'created_at' => time(),
+            'updated_at' => time(),
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
     }
 
     /**

@@ -40,13 +40,13 @@ class FaqController extends MyController
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 if ($model->save()) {
-                    Yii::$app->session->setFlash('toastr-' . $model->toastr_key . '-view', [
+                    Yii::$app->session->setFlash('toastr-' . $model->toastr_key . '-form', [
                         'title' => 'Thông báo',
                         'text' => 'Cập nhật thành công',
                         'type' => 'success'
                     ]);
-                    return $this->redirect(['view', 'id' => $model->id]);
                 }
+                return $this->refresh();
             } else {
                 $errors = Html::tag('p', 'Cập nhật thất bại');
                 foreach ($model->getErrors() as $error) {
