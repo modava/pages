@@ -2,12 +2,11 @@
 
 namespace modava\pages\models\table;
 
-use cheatsheet\Time;
+use backend\components\MyModel;
 use modava\pages\models\query\PagesFaqQuery;
 use Yii;
-use yii\db\ActiveRecord;
 
-class PagesFaqTable extends \yii\db\ActiveRecord
+class PagesFaqTable extends MyModel
 {
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
